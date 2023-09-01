@@ -48,13 +48,14 @@ public class PersonController {
     public List<Person> getByName(@PathVariable("name")String name) {
         return (List<Person>) personService.getByName(name);}
 
-     @PutMapping(value = "/actualizar")
+    @PutMapping(value = "/actualizar")
     public Integer update (@RequestBody Person person){
         return personService.update(person, person.getCc());
     }
 
     @PostMapping(value = "/guardar")
     public Integer save(@RequestBody Person person) {
+
         return personService.save(person, person.getCc(), person.getName(),
             person.getBornDate());}
 

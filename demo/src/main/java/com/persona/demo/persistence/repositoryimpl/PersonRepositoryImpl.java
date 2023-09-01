@@ -4,7 +4,6 @@ import com.persona.demo.persistence.entities.PersonEntity;
 import com.persona.demo.persistence.repository.CrudRepository;
 import com.persona.demo.persistence.repository.PersonRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,11 +151,11 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Integer save(Person person, Integer cc, String name, LocalDate bornDate){
         PersonEntity personEntity = new PersonEntity(
-                person.getCc(),
-                person.getName().trim(),
+                cc,
+                name,
                 person.getLastname(),
                 person.getGender(),
-                person.getBornDate(),
+                bornDate,
                 person.getYears(),
                 person.getCellphone()
         );

@@ -22,6 +22,6 @@ public interface PersonRepository {
 
     Integer update(Person person,Integer cc);
 
-    Integer save(Person person, Integer cc, String name, LocalDate borndate);
+    Integer save(Person person, Integer cc, String name, LocalDate bornDate);
 
-   }
+}

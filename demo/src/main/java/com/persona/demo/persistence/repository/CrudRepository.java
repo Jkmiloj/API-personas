@@ -24,7 +24,8 @@ public interface CrudRepository extends JpaRepository<PersonEntity, Integer> {
             "OR name LIKE 'c%' OR name LIKE 'C%'", nativeQuery = true)
     List<PersonEntity> getByName(@Param("name") String name);*/
 
-    @Query(value = "SELECT *FROM person WHERE UPPER(SUBSTRING(name, 1, 1)) IN ('A', 'B', 'C')", nativeQuery = true)
+    @Query(value = "SELECT * FROM person WHERE UPPER(SUBSTRING(name, 1, 1)) IN ('A', 'B', 'C') " +
+            "AND UPPER(name) LIKE CONCAT(UPPER(:name), '%')", nativeQuery = true)
     List<PersonEntity> getByName(@Param("name") String name);
 
 

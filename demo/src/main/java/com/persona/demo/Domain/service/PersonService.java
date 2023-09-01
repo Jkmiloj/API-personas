@@ -8,10 +8,19 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import org.springframework.context.MessageSource;
+
 
 @Service
 public class PersonService implements PersonRepository {
+
+    private MessageSource messageSource;
+
+    public PersonService(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     private final static String[] genderList = {"F","M"};
 
@@ -54,7 +63,7 @@ public class PersonService implements PersonRepository {
     @Override
     public List<Person> getByName(String name){
         if(name == null || name.isEmpty()){
-            throw new IllegalArgumentException("El nombre no puede estar vacio");
+            throw new IllegalArgumentException(messageSource.getMessage("validation.empty.name",null, Locale.getDefault()));
         }
         if(!name.matches("[A-Ca-c].*")){
             throw new IllegalArgumentException("La primera letra debe ser A,B o C (mayúsculas o minúsculas");
